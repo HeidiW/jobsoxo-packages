@@ -22,20 +22,30 @@ export const INVOICE_STAGE_LABELS: Record<InvoiceStage, string> = {
  *   invoice bills the value of work completed so far minus what was invoiced
  *   before (standard progress billing, so a deposit is credited automatically).
  */
-export const stageBasisSchema = z.union([
+export type StageBasis =
+  | { type: "amount" | "percent"; value: number }
+  | { type: "lines"; percents: number[] };
+// The exported types are written out by hand, and the schemas are typed as
+// z.ZodType, so the emitted declarations don't depend on zod's internals and
+// work against zod 3 and zod 4 alike.
+export const stageBasisSchema: z.ZodType<StageBasis> = z.union([
   z.object({ type: z.enum(["amount", "percent"]), value: z.number().finite().nonnegative() }),
   z.object({ type: z.literal("lines"), percents: z.array(z.number().finite().min(0).max(100)).max(500) }),
 ]);
-export type StageBasis = z.infer<typeof stageBasisSchema>;
 
-export const contractScopeLineSchema = z.object({
+export type ContractScopeLine = {
+  section: string | null;
+  description: string;
+  amount: number;
+  /** Work status on the job line when the snapshot was taken; a hint for percent complete. */
+  status?: "pending" | "in_progress" | "completed";
+};
+export const contractScopeLineSchema: z.ZodType<ContractScopeLine> = z.object({
   section: z.string().nullable(),
   description: z.string(),
   amount: z.number(),
-  /** Work status on the job line when the snapshot was taken; a hint for percent complete. */
   status: z.enum(["pending", "in_progress", "completed"]).optional(),
 });
-export type ContractScopeLine = z.infer<typeof contractScopeLineSchema>;
 
 export const isInvoiceStage = (value: unknown): value is InvoiceStage =>
   typeof value === "string" && (INVOICE_STAGES as readonly string[]).includes(value);

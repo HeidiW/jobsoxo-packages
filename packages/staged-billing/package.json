@@ -1,6 +1,6 @@
 {
   "name": "@jobsoxo/staged-billing",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Deposit, progress and final invoice math for contractors. Per-line percent complete, invoiced-to-date, change orders that raise the contract. Pure functions, zod-validated, no database.",
   "license": "MIT",
   "author": "Heidi Williams-Foy",
@@ -51,6 +51,6 @@
     "zod": "^3.23.0 || ^4.0.0"
   },
   "devDependencies": {
-    "zod": "^4.0.0"
+    "zod": "^3.25.0"
   }
 }
