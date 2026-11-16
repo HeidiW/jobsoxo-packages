@@ -1,0 +1,56 @@
+{
+  "name": "@jobsoxo/staged-billing",
+  "version": "0.1.0",
+  "description": "Deposit, progress and final invoice math for contractors. Per-line percent complete, invoiced-to-date, change orders that raise the contract. Pure functions, zod-validated, no database.",
+  "license": "MIT",
+  "author": "Heidi Williams-Foy",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HeidiW/jobsoxo-packages.git",
+    "directory": "packages/staged-billing"
+  },
+  "homepage": "https://github.com/HeidiW/jobsoxo-packages/tree/main/packages/staged-billing#readme",
+  "bugs": "https://github.com/HeidiW/jobsoxo-packages/issues",
+  "keywords": [
+    "invoice",
+    "billing",
+    "progress-billing",
+    "deposit",
+    "contractor",
+    "change-order",
+    "zod"
+  ],
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "prepack": "npm run build"
+  },
+  "peerDependencies": {
+    "zod": "^3.23.0 || ^4.0.0"
+  },
+  "devDependencies": {
+    "zod": "^4.0.0"
+  }
+}
