@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(~/jobsoxo/**)",
+      "Edit(~/jobsoxo/**)",
+      "Write(~/jobsoxo/**)",
+      "Bash(cat ~/jobsoxo*)",
+      "Bash(cp ~/jobsoxo*)"
+    ]
+  }
+}
