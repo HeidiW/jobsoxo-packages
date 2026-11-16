@@ -1,0 +1,19 @@
+{
+  "name": "jobsoxo-packages",
+  "private": true,
+  "description": "Open-source building blocks from JobsOxo, the back office for painting contractors.",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "test": "vitest run",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  },
+  "devDependencies": {
+    "tsup": "^9.0.0",
+    "typescript": "^5.9.0",
+    "vitest": "^5.1.0"
+  }
+}
